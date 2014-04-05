@@ -22,8 +22,8 @@ public class propertyBean {
     	InputStream input = null;
      
     	try {
-     
-    		input = new FileInputStream("./config/config.properties");
+    		input = getClass().getClassLoader().getResourceAsStream("/config.properties");
+    		//input = new FileInputStream("config.properties");
      
     		// load a properties file
     		prop.load(input);
