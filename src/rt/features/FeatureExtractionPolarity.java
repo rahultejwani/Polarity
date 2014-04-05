@@ -25,7 +25,6 @@ public class FeatureExtractionPolarity {
 	private static HashMap<String, Double> dictionary = new DictionaryBean().getDictionary();
 	private String[] BagOfWords;
 	private ArrayList<String> Lines;
-	private BufferedReader br;
 	private static HashMap<String, Integer> unigramFeatureSet;
 	private HashMap<Integer, Boolean> reviewUnigrams = new HashMap<>();
 	StopWords stopwords = new StopWords();
@@ -45,8 +44,8 @@ public class FeatureExtractionPolarity {
 			negationListMap();
 		if(emotScoreMap.size() == 0)
 			fillEmoticonMap();
-		if(unigramFeatureSet.size() == 0)
-			load();
+		if(dictionary.size() == 0)
+			dictionary = new DictionaryBean().getDictionary();
 	}
 	public void  cleanReview(){
 		review = review.replaceAll("(..)+", "");
@@ -71,25 +70,9 @@ public class FeatureExtractionPolarity {
 		//this.emotScoreMap.put("", 0);
 
 	}
-	public void load(){
-		try {
-			br = new BufferedReader(new FileReader("/home/rahul/Development/SentimentAnalysis/"
-					+ "features/featureSetPolarity_1_02.txt"));
-			String line = "";
-			while ((line = br.readLine()) != null) {
-				String[] row = line.split(",");
-				unigramFeatureSet.put(row[1], Integer.parseInt(row[0]));
-			}
-		} catch (FileNotFoundException e) {
+	
 
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-	}
-
-	public void negationListMap()
+	private void negationListMap()
 	{
 		this.negationList.put("no", -1);
 		this.negationList.put("not", -1);
@@ -137,11 +120,26 @@ public class FeatureExtractionPolarity {
 		return netScore;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * the polarity score between -1 to 1
+	 * where -1 being most negative and +1 being most positive
+	 */
 
+	public double getFinalScore(){
+		double unigram = this.getUnigramScore();
+		double bigram = this.getBigramFirstScore();
+		double trigram = this.getTrigramScore();
+		int emoticon = this.getEmotcionScore();
+		return (.6*unigram + .15 * bigram + .15*trigram +0.2*emoticon);
+	}
 
-
-
-
+/**
+ * 
+ * @return
+ * Unigram score using the negative words
+ */
 
 	public double getUnigramScore()
 	{
