@@ -2,7 +2,7 @@ package rt.features;
 
 import java.util.ArrayList;
 /**
- * 
+ * This class is used to generate N-grams of the string
  * @author rahultejwani
  *
  */

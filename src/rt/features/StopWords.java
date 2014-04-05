@@ -1,7 +1,11 @@
 package rt.features;
 
 import java.util.HashSet;
-
+/**
+ * This class contains a list of stopwords that are not taken into account while score calculation
+ * @author rahultejwani
+ *
+ */
 public class StopWords {
 	protected static HashSet<String> m_Words = null;
 	 public StopWords() {

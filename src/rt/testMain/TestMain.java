@@ -7,9 +7,9 @@ import rt.features.FeatureExtractionPolarity;
 public class TestMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		FeatureExtractionPolarity fep = new FeatureExtractionPolarity("is this what indian politics all about? :(");
+		
+		FeatureExtractionPolarity fep = new FeatureExtractionPolarity("today is a bright sunny day and I am excited :)");
 		double unigram = fep.getUnigramScore();
 		double bigram = fep.getBigramFirstScore();
 		System.out.println("Unigram Score:"+ unigram);
