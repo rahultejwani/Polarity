@@ -16,8 +16,7 @@ public class TestMain {
 		System.out.println("Bigram Score:"+ bigram);
 		System.out.println("emoticon score:" + fep.getEmotcionScore());
 		System.out.println("trigram score:" + fep.getTrigramScore());
-		System.out.println("Final Score :  "+ (0.6*unigram +.1*bigram + .1*fep.getTrigramScore()+.2*
-				fep.getEmotcionScore()));
+		System.out.println("Final Score :  "+ fep.getFinalScore());
 		System.out.println("Size:"+ fep.getWordCount());
 		System.out.println("*********************************************************");
 	}
