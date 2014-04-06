@@ -1,6 +1,6 @@
 package rt.bean;
 
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -22,7 +22,7 @@ public class propertyBean {
     	InputStream input = null;
      
     	try {
-    		input = getClass().getClassLoader().getResourceAsStream("/config.properties");
+    		input = getClass().getResourceAsStream("/config.properties");
     		//input = new FileInputStream("config.properties");
      
     		// load a properties file
